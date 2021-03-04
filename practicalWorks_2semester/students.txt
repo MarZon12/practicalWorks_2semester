@@ -1,0 +1,55 @@
+Save version: 100
+[GroupData]
+Group number: 323
+Form of education (code): 1
+[StudentData]
+Full name: Martynov Alexander 1
+Sex (code): 0
+Sequential number in group list: 12
+Last session grades: 3 3 3 5 5 5 5 5
+Time of last change: 1613568963
+[StudentData]
+Full name: Martynov Alexander 3
+Sex (code): 0
+Sequential number in group list: 12
+Last session grades: 5 5 5 5 5 5 5 5
+Time of last change: 1613568763
+[StudentData]
+Full name: Martynov Alexander 4
+Sex (code): 0
+Sequential number in group list: 12
+Last session grades: 5 4 4 5 5 5 5 5
+Time of last change: 1613568763
+[StudentData]
+Full name: Martynov Alexander 5
+Sex (code): 0
+Sequential number in group list: 12
+Last session grades: 5 5 4 5 5 5 5 5
+Time of last change: 1613568763
+[StudentData]
+Full name: Martynov Alexander 6
+Sex (code): 0
+Sequential number in group list: 12
+Last session grades: 5 3 3 5 5 5 5 5
+Time of last change: 1613568763
+[GroupData]
+Group number: 105
+Form of education (code): 0
+[StudentData]
+Full name: Martynov Alexander Full-Time
+Sex (code): 0
+Sequential number in group list: 12
+Last session grades: 5 5 5 5 5 5 5 5
+Time of last change: 1613568963
+[StudentData]
+Full name: Martynov Alexander 2
+Sex (code): 0
+Sequential number in group list: 10
+Last session grades: 5 5 5 5 5 5 4 4
+Time of last change: 1613760290
+[StudentData]
+Full name: Martynov Alexander 123
+Sex (code): 0
+Sequential number in group list: 9
+Last session grades: 5 5 5 5 5 5 5 5
+Time of last change: 1614615781
