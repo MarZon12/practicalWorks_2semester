@@ -14,21 +14,21 @@ namespace MZ_ia {
 	};
 
 	template<class T>
-	class improvedArray
+	class ImprovedArray
 	{
 	public:
-		improvedArray() {
+		ImprovedArray() {
 			arrSize = 0;
 			arrCap = computeArrCap(0);
 			arr = new T[arrCap];
 		};
-		improvedArray(const size_t arrSize_) {
+		ImprovedArray(const size_t arrSize_) {
 			arrSize = arrSize_;
 			arrCap = computeArrCap(arrSize_);
 			arr = new T[arrCap];
 		};
 
-		~improvedArray() {
+		~ImprovedArray() {
 			delete[] arr;
 		};
 

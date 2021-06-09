@@ -18,7 +18,7 @@ void practicalWork2::displayNotifications() {
 	}
 }
 
-//pos - first character after int found in string
+//return pos - first character after int found in string
 practicalWork2::extractIntFromStringResult practicalWork2::extractIntFromString(std::string stringToAnalyze, int pos) {
 	if (pos >= stringToAnalyze.length() || pos < 0)
 		return practicalWork2::extractIntFromStringResult();
@@ -109,7 +109,7 @@ void practicalWork2::menu_IA() {
 	{
 		displayNotifications();
 		
-		std::cout << "Practical work 2: \n"
+		std::cout << "Practical work 2: integer array\n"
 			<< "1 - Create an array according to the entered size. Then fill in with random numbers.\n"
 			<< "2 - Create an array based on the entered elements. (the size is determined automatically; example: 12 2 20 1 2442 1 42 (enter on one line))\n"
 			<< "3 - Create an array of read elements from a file. (the size is determined automatically; example: 12 2 20 1 2442 1 42 (must be written in one line))\n"
@@ -145,8 +145,8 @@ void practicalWork2::menu_IA() {
 			std::cin.ignore(std::cin.rdbuf()->in_avail());
 			std::getline(std::cin, inputString);
 
-			timerStart = std::chrono::steady_clock::now();
 			pos = 0;
+			timerStart = std::chrono::steady_clock::now();
 			do
 			{
 				extractionResult = extractIntFromString(inputString, pos);
@@ -189,7 +189,11 @@ void practicalWork2::menu_IA() {
 			} while (extractionResult.success);
 			timerStop = std::chrono::steady_clock::now();
 
+			fin.close();
+
 			displayArray();
+
+			displayTimerResultWithCheck(timerStart, timerStop);
 
 			displayClsWithPause();
 			break;
@@ -222,7 +226,7 @@ void practicalWork2::menu_IA_WorkWithArray() {
 	{
 		displayNotifications();
 		
-		std::cout << "Practical work 2: \n"
+		std::cout << "Practical work 2: work with an array\n"
 			<< "1 - Insert item into array (by index)\n"
 			<< "2 - Remove item in array (by index)\n"
 			<< "3 - Remove item in array (by value)\n"
@@ -370,19 +374,39 @@ void practicalWork2::menu_IA_WorkWithArray() {
 
 
 
+void practicalWork2::displayList() {
+	std::cout << "List: ";
+	for (size_t i = 0; i < listIL.size(); i++)
+		std::cout << listIL[i] << ' ';
+	std::cout << std::endl;
+}
+
 void practicalWork2::menu_DLList() {
 	
-	int choise;
+	int choise,
+		pos = 0;
+
+	std::string inputString;
+
+	practicalWork2::extractIntFromStringResult extractionResult;
+
+	std::ifstream fin;
+
+	std::chrono::steady_clock::time_point timerStart;
+	std::chrono::steady_clock::time_point timerStop;
+
+	srand(time(NULL));
+
 	while (true)
 	{
 		displayNotifications();
 		
-		std::cout << "Practical work 2: \n"
-			<< "1 - Create an array according to the entered size. Then fill in with random numbers.\n"
-			<< "2 - Create an array based on the entered elements. (the size is determined automatically; example: 12 2 20 1 2442 1 42 (enter on one line))\n"
-			<< "3 - Create an array of read elements from a file. (the size is determined automatically; example: 12 2 20 1 2442 1 42 (must be written in one line))\n"
+		std::cout << "Practical work 2: doubly linked list\n"
+			<< "1 - Create a doubly linked list according to the entered size. Then fill in with random numbers.\n"
+			<< "2 - Create a doubly linked list based on the entered elements. (the size is determined automatically; example: 12 2 20 1 2442 1 42 (enter on one line))\n"
+			<< "3 - Create a doubly linked list of read elements from a file. (the size is determined automatically; example: 12 2 20 1 2442 1 42 (must be written in one line))\n"
 			<< "4 - Toggle timing. (current state = " << (bTimingIsEnabled ? "enabled" : "disabled") << ")\n"
-			<< "5 - Work with an array\n"
+			<< "5 - Work with a doubly linked list\n"
 			<< "6 - Back\n";
 		std::cin >> choise;
 
@@ -391,22 +415,249 @@ void practicalWork2::menu_DLList() {
 		switch (choise)
 		{
 		case 1:
+			std::cout << "Enter list size: ";
+			std::cin >> choise;
+
+			listIL.clearList();
+
+			timerStart = std::chrono::steady_clock::now();
+			for (size_t i = 0; i < choise; i++)
+				listIL.push_back(rand() % 123);
+			timerStop = std::chrono::steady_clock::now();
+
+			displayList();
+
+			displayTimerResultWithCheck(timerStart, timerStop);
 
 			displayClsWithPause();
 			break;
 		case 2:
+			std::cout << "Enter the elements of the list (in one line): ";
+
+			std::cin.clear();
+			std::cin.ignore(std::cin.rdbuf()->in_avail());
+			std::getline(std::cin, inputString);
+
+			listIL.clearList();
+
+			pos = 0;
+			timerStart = std::chrono::steady_clock::now();
+			do
+			{
+				extractionResult = extractIntFromString(inputString, pos);
+				if (extractionResult.success)
+				{
+					listIL.push_back(extractionResult.intValue);
+					pos = extractionResult.nextCharAfterIntPos;
+				}
+			} while (extractionResult.success);
+			timerStop = std::chrono::steady_clock::now();
+
+			displayList();
+
+			displayTimerResultWithCheck(timerStart, timerStop);
 
 			displayClsWithPause();
 			break;
 		case 3:
+			fin.open(fileName);
+
+			listIL.clearList();
+
+			if (!fin.is_open())
+			{
+				std::cout << "Could not open file \"file.txt\"." << std::endl;
+				displayClsWithPause();
+				break;
+			}
+
+			std::getline(fin, inputString);
+
+			pos = 0;
+			timerStart = std::chrono::steady_clock::now();
+			do
+			{
+				extractionResult = extractIntFromString(inputString, pos);
+				if (extractionResult.success)
+				{
+					listIL.push_back(extractionResult.intValue);
+					pos = extractionResult.nextCharAfterIntPos;
+				}
+			} while (extractionResult.success);
+			timerStop = std::chrono::steady_clock::now();
+
+			fin.close();
+
+			displayList();
+
+			displayTimerResultWithCheck(timerStart, timerStop);
 
 			displayClsWithPause();
 			break;
 		case 4:
-
-			displayClsWithPause();
+			bTimingIsEnabled = !bTimingIsEnabled;
+			addNotification("Timing state has been updated");
 			break;
 		case 5:
+			menu_DLList_WorkWithDLL();
+			break;
+		default:
+			return;
+			break;
+		}
+	}
+}
+
+void practicalWork2::menu_DLList_WorkWithDLL() {
+	int choise,
+		index,
+		value;
+
+	std::chrono::steady_clock::time_point timerStart;
+	std::chrono::steady_clock::time_point timerStop;
+
+	srand(time(NULL));
+
+	while (true)
+	{
+		displayNotifications();
+
+		std::cout << "Practical work 2: work with a doubly linked list\n"
+			<< "1 - Insert item into list (by index)\n"
+			<< "2 - Remove item in list (by index)\n"
+			<< "3 - Remove item in list (by value)\n"
+			<< "4 - Get the value of an list element (by index)\n"
+			<< "5 - Get the index of an element of an list (by value)\n"
+			<< "6 - Back\n";
+		std::cin >> choise;
+
+		system("cls");
+
+		switch (choise)
+		{
+		case 1:
+			displayList();
+
+			std::cout << "Enter index: ";
+			std::cin >> index;
+			std::cout << "Enter value: ";
+			std::cin >> value;
+
+			try
+			{
+				timerStart = std::chrono::steady_clock::now();
+				listIL.insert_byIndex(value, index);
+				timerStop = std::chrono::steady_clock::now();
+
+				displayList();
+				displayTimerResultWithCheck(timerStart, timerStop);
+
+				displayClsWithPause();
+			}
+			catch (const MZ_il::failure& fail)
+			{
+				addNotification(fail.what());
+				system("cls");
+			}
+			break;
+		case 2:
+			displayList();
+
+			std::cout << "Enter index: ";
+			std::cin >> index;
+
+			try
+			{
+				timerStart = std::chrono::steady_clock::now();
+				listIL.pop_node(index);
+				timerStop = std::chrono::steady_clock::now();
+
+				displayList();
+				displayTimerResultWithCheck(timerStart, timerStop);
+
+				displayClsWithPause();
+			}
+			catch (const MZ_il::failure& fail)
+			{
+				addNotification(fail.what());
+				system("cls");
+			}
+
+			break;
+		case 3:
+			displayList();
+
+			std::cout << "Enter value: ";
+			std::cin >> value;
+
+			try
+			{
+				timerStart = std::chrono::steady_clock::now();
+				index = listIL.find(value);
+
+				if (index < 0)
+				{
+					addNotification("The array element was not found");
+					system("cls");
+					break;
+				}
+
+				listIL.pop_node(index);
+				timerStop = std::chrono::steady_clock::now();
+
+				displayList();
+				displayTimerResultWithCheck(timerStart, timerStop);
+
+				displayClsWithPause();
+			}
+			catch (const MZ_il::failure& fail)
+			{
+				addNotification(fail.what());
+				system("cls");
+			}
+
+			break;
+		case 4:
+			displayList();
+
+			std::cout << "Enter index: ";
+			std::cin >> index;
+
+			try
+			{
+				timerStart = std::chrono::steady_clock::now();
+				value = listIL[index];
+				timerStop = std::chrono::steady_clock::now();
+
+				std::cout << "Value at index: " << value << std::endl;
+
+				displayTimerResultWithCheck(timerStart, timerStop);
+
+				displayClsWithPause();
+			}
+			catch (const MZ_il::failure& fail)
+			{
+				addNotification(fail.what());
+				system("cls");
+			}
+
+			break;
+		case 5:
+			displayList();
+
+			std::cout << "Enter value: ";
+			std::cin >> value;
+
+			index = listIL.find(value);
+
+			if (index < 0)
+			{
+				addNotification("The array element was not found");
+				system("cls");
+				break;
+			}
+			else
+				std::cout << "Value index: " << index << std::endl;
 
 			displayClsWithPause();
 			break;

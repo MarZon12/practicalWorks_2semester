@@ -141,15 +141,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BinaryTree.cpp" />
+    <ClCompile Include="CourseWork.cpp" />
+    <ClCompile Include="PolishNotation.cpp" />
     <ClCompile Include="practicalWork2.cpp" />
+    <ClCompile Include="practicalWork3.cpp" />
     <ClCompile Include="practicalWorks_2semester.cpp" />
     <ClCompile Include="practicalWork1.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="improvedArray.h" />
-    <ClInclude Include="improvedList.h" />
+    <ClInclude Include="BinaryTree.h" />
+    <ClInclude Include="CourseWork.h" />
+    <ClInclude Include="ImprovedArray.h" />
+    <ClInclude Include="ImprovedList.h" />
+    <ClInclude Include="PolishNotation.h" />
     <ClInclude Include="practicalWork1.h" />
     <ClInclude Include="practicalWork2.h" />
+    <ClInclude Include="practicalWork3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,24 +7,18 @@
 #include <chrono>
 #include <ctime>
 
-#include "ImprovedArray.h"
-#include "ImprovedList.h"
+#include "BinaryTree.h"
 
-class practicalWork2
+class CourseWork
 {
 public:
-	practicalWork2();
-	~practicalWork2() {};
+	CourseWork();
 
+	//       -MENU-       //
 
 	void menu_main();
 
-	void menu_IA();
-	void menu_IA_WorkWithArray();
-
-
-	void menu_DLList();
-	void menu_DLList_WorkWithDLL();
+	void menu_WorkWithTree();
 
 private:
 	struct extractIntFromStringResult {
@@ -35,10 +29,23 @@ private:
 		extractIntFromStringResult(int intValue_, bool success_, int nextCharAfterIntPos_) :intValue(intValue_), success(success_), nextCharAfterIntPos(nextCharAfterIntPos_) {};
 	};
 	
-	MZ_ia::ImprovedArray<int> arrIA;
-	MZ_il::ImprovedList<int> listIL;
+	BinaryTree binTree;
+
+	bool useNullWhenPrint;
 
 	std::string fileName;
+
+
+	//       -NOTIFICATIONS-       //
+
+	std::vector<std::string> notificationsToDisplay;
+
+	void addNotification(std::string notification);
+
+	void displayNotifications();
+
+
+	//       -OTHER STUFF-       //
 
 	bool bTimingIsEnabled;
 
@@ -47,16 +54,5 @@ private:
 	extractIntFromStringResult extractIntFromString(std::string stringToAnalyze, int pos);
 
 	void displayClsWithPause();
-
-	std::vector<std::string> notificationsToDisplay;
-
-	
-	//Notifications
-	void addNotification(std::string notification);
-	void displayNotifications();
-
-	void displayArray();
-
-	void displayList();
 };
 
