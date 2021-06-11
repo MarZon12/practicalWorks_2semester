@@ -10,7 +10,6 @@
 #include <fstream>
 #include <sstream>
 
-
 class practicalWork1
 {
 public:
@@ -246,4 +245,3 @@ private:
 
 	void displayByTimeOfLastChange(time_t minTime, time_t maxTime);
 };
-
