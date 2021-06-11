@@ -149,7 +149,7 @@ void practicalWork1::menu_addNewStudent() {
 	for (short i = 0; i < 5; i++)
 		std::cin >> tempStudentData.lastSessionGrades.diffTest[i];
 
-	//WARNING добавить проверку существубщей группы по номеру для автозаполнения
+	//WARNING Г¤Г®ГЎГ ГўГЁГІГј ГЇГ°Г®ГўГҐГ°ГЄГі Г±ГіГ№ГҐГ±ГІГўГіГЎГ№ГҐГ© ГЈГ°ГіГЇГЇГ» ГЇГ® Г­Г®Г¬ГҐГ°Гі Г¤Г«Гї Г ГўГІГ®Г§Г ГЇГ®Г«Г­ГҐГ­ГЁГї
 	std::cout << "Form of education(fulltime - 0, parttime - 1, extramural - 2): ";
 	std::cin >> choise;
 	switch (choise)
@@ -253,7 +253,7 @@ void practicalWork1::menu_editStudentData() {
 	for (short i = 0; i < 5; i++)
 		std::cin >> tempStudentData.lastSessionGrades.diffTest[i];
 
-	//WARNING добавить проверку существубщей группы по номеру для автозаполнения
+	//WARNING Г¤Г®ГЎГ ГўГЁГІГј ГЇГ°Г®ГўГҐГ°ГЄГі Г±ГіГ№ГҐГ±ГІГўГіГЎГ№ГҐГ© ГЈГ°ГіГЇГЇГ» ГЇГ® Г­Г®Г¬ГҐГ°Гі Г¤Г«Гї Г ГўГІГ®Г§Г ГЇГ®Г«Г­ГҐГ­ГЁГї
 	std::cout << "Form of education(fulltime - 0, parttime - 1, extramural - 2; entering \"-1\" is prohibited): ";
 	std::cin >> choise;
 	switch (choise)
